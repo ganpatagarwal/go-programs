@@ -13,7 +13,7 @@ space - O(1)
 iterate through array once and check if there is an entry in map for 
 `target-num`
 
-if not, add the num to map and procedd
+if not, add the num to map and proceed
 
 ```
 time - O(N)
