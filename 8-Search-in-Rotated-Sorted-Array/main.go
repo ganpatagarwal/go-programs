@@ -6,9 +6,10 @@ import (
 
 func main() {
 	input := map[int][]int{
-		6: {5, 6, 7, 0, 1, 2, 3}, // expected 4
-		3: {4, 5, 6, 7, 0, 1, 2}, // expected -1
+		3: {5, 6, 7, 0, 1, 2, 3}, // expected 6
+		0: {4, 5, 6, 7, 0, 1, 2}, // expected 4
 		2: {1},                   // expected -1
+		5: {5, 1, 2, 3, 4},       // expected 0
 	}
 
 	for target, nums := range input {
@@ -37,22 +38,23 @@ func search(nums []int, target int) int {
 
 	for left <= right {
 		mid := (left + right) / 2
-		log.Println("mid ", nums[mid])
+		//log.Println("mid ", nums[mid])
 
 		if nums[mid] == target {
 			return mid
 		}
 
-		if nums[mid] >= nums[left] {
-			if target >= nums[left] && target < nums[mid] {
+		if nums[mid] >= nums[left] { // if left subarray is sorted
+			if target >= nums[left] && target < nums[mid] { // if target sits in left sorted subarray
 				right = mid - 1
-			} else {
+			} else { // target is in right subarray
 				left = mid + 1
 			}
-		} else if target >= nums[left] {
+			// if left subarray is not sorted, then assume that right subarray is sorted
+		} else if target < nums[mid] || target > nums[right] { // target is smaller than mid-value or target is greater than last value of right subarray
 			right = mid - 1
 		} else {
-			left = left + 1
+			left = mid + 1
 		}
 	}
 
