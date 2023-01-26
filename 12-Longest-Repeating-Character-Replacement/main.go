@@ -20,7 +20,6 @@ func main() {
 
 // time - O(N)
 // space - O(1) - since we will store at max 26 alphabets
-// brute force - incomplete
 func characterReplacement(s string, k int) int {
 	charMap := map[rune]int{}
 	res := 0
