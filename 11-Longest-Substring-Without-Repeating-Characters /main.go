@@ -15,7 +15,7 @@ func main() {
 	}
 
 	for _, s := range inputs {
-		log.Println(lengthOfLongestSubstring(s))
+		log.Println(s, lengthOfLongestSubstring(s))
 	}
 }
 
